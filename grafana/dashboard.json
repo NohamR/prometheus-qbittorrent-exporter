@@ -79,7 +79,7 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 3,
+        "w": 2,
         "x": 0,
         "y": 0
       },
@@ -96,9 +96,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
@@ -162,8 +163,8 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 3,
-        "x": 3,
+        "w": 2,
+        "x": 2,
         "y": 0
       },
       "id": 3,
@@ -179,9 +180,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "expr": "qbittorrent_connected - qbittorrent_firewalled",
@@ -239,7 +241,7 @@
       "gridPos": {
         "h": 4,
         "w": 3,
-        "x": 6,
+        "x": 4,
         "y": 0
       },
       "id": 13,
@@ -255,9 +257,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "expr": "qbittorrent_dht_nodes",
@@ -294,11 +297,11 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 3,
-        "x": 9,
+        "w": 2,
+        "x": 7,
         "y": 0
       },
-      "id": 5,
+      "id": 18,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -311,9 +314,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
@@ -321,14 +325,14 @@
             "uid": "${data_source}"
           },
           "editorMode": "code",
-          "expr": "sum by (app) (qbittorrent_dl_info_data_total)",
+          "expr": "sum by (app) (qbittorrent_alltime_dl_total)",
           "instant": false,
           "interval": "",
           "legendFormat": " ",
           "refId": "A"
         }
       ],
-      "title": "Data downloaded",
+      "title": "Total downloaded",
       "type": "stat"
     },
     {
@@ -354,8 +358,8 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 3,
-        "x": 12,
+        "w": 2,
+        "x": 9,
         "y": 0
       },
       "id": 6,
@@ -371,9 +375,132 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.2.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${data_source}"
+          },
+          "editorMode": "code",
+          "expr": "sum by (app) (qbittorrent_alltime_ul_total)",
+          "instant": false,
+          "interval": "",
+          "legendFormat": " ",
+          "refId": "A"
+        }
+      ],
+      "title": "Total uploaded",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${data_source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 2,
+        "x": 11,
+        "y": 0
+      },
+      "id": 5,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.2.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${data_source}"
+          },
+          "editorMode": "code",
+          "expr": "sum by (app) (qbittorrent_dl_info_data_total)",
+          "instant": false,
+          "interval": "",
+          "legendFormat": " ",
+          "refId": "A"
+        }
+      ],
+      "title": "Session downloaded",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${data_source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 2,
+        "x": 13,
+        "y": 0
+      },
+      "id": 19,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
@@ -388,7 +515,7 @@
           "refId": "A"
         }
       ],
-      "title": "Data uploaded",
+      "title": "Session uploaded",
       "type": "stat"
     },
     {
@@ -431,9 +558,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
@@ -487,6 +615,8 @@
       },
       "id": 16,
       "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -498,7 +628,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "expr": "rate(qbittorrent_dl_info_data_total[2m])",
@@ -547,6 +677,8 @@
       },
       "id": 17,
       "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -558,7 +690,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "expr": "rate(qbittorrent_up_info_data_total[2m])",
@@ -607,7 +739,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.2.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -697,7 +829,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.2.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -807,7 +939,6 @@
   "refresh": "10s",
   "revision": 1,
   "schemaVersion": 38,
-  "style": "dark",
   "tags": [],
   "templating": {
     "list": [
@@ -844,9 +975,9 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "Prometheus",
-          "value": "Prometheus"
+          "value": "d4352f38-27bf-4c16-9fae-00e9ced664a1"
         },
         "hide": 0,
         "includeAll": false,
@@ -869,8 +1000,8 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Qbittorrent",
-  "uid": "eKyTETFMk",
+  "title": "Qb",
+  "uid": "eKyTETFMj",
   "version": 1,
   "weekStart": ""
 }

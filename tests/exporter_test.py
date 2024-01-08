@@ -270,6 +270,20 @@ class TestQbittorrentMetricsCollector(unittest.TestCase):
                 help_text="Data uploaded since the server started, in bytes.",
                 metric_type=MetricType.COUNTER,
             ),
+            Metric(
+                name="qbittorrent_alltime_dl",
+                value=0,
+                labels={},  # no labels in the example
+                help_text="Total data downloaded, in bytes.",
+                metric_type=MetricType.COUNTER,
+            ),
+            Metric(
+                name="qbittorrent_alltime_ul",
+                value=0,
+                labels={},  # no labels in the example
+                help_text="Total data uploaded, in bytes.",
+                metric_type=MetricType.COUNTER,
+            ),
         ]
 
         metrics = self.collector._get_qbittorrent_status_metrics()
