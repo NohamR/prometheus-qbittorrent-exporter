@@ -1,11 +1,13 @@
 import faulthandler
 import logging
 import os
+from dotenv import load_dotenv
+load_dotenv()
 import signal
 import sys
 import time
 from dataclasses import dataclass, field
-from enum import StrEnum, auto
+from enum import Enum, auto
 from typing import Any, Iterable
 
 from prometheus_client import start_http_server
@@ -17,8 +19,7 @@ from qbittorrentapi import Client, TorrentStates
 faulthandler.enable()
 logger = logging.getLogger()
 
-
-class MetricType(StrEnum):
+class MetricType(Enum):
     """
     Represents possible metric types (used in this project).
     """
@@ -157,6 +158,59 @@ class QbittorrentMetricsCollector:
                 value=server_state.get("alltime_ul", 0),
                 labels={},  # no labels in the example
                 help_text="Total data uploaded, in bytes.",
+                metric_type=MetricType.COUNTER,
+            ),
+            Metric(
+                name=f"{self.config['metrics_prefix']}_total_peer_connections",
+                value=server_state.get("total_peer_connections", 0),
+                labels={},  # no labels in the example
+                help_text="total_peer_connections.",
+                metric_type=MetricType.COUNTER,
+            ),
+
+
+            #### Disk metrics
+            Metric(
+                name=f"{self.config['metrics_prefix']}_write_cache_overload",
+                value=server_state.get("write_cache_overload", 0),
+                labels={},  # no labels in the example
+                help_text="write_cache_overload.",
+                metric_type=MetricType.COUNTER,
+            ),
+            Metric(
+                name=f"{self.config['metrics_prefix']}_read_cache_overload",
+                value=server_state.get("read_cache_overload", 0),
+                labels={},  # no labels in the example
+                help_text="read_cache_overload.",
+                metric_type=MetricType.COUNTER,
+            ),
+
+            Metric(
+                name=f"{self.config['metrics_prefix']}_read_cache_hits",
+                value=server_state.get("read_cache_hits", 0),
+                labels={},  # no labels in the example
+                help_text="read_cache_hits.",
+                metric_type=MetricType.COUNTER,
+            ),
+            Metric(
+                name=f"{self.config['metrics_prefix']}_average_time_queue",
+                value=server_state.get("average_time_queue", 0),
+                labels={},  # no labels in the example
+                help_text="average_time_queue.",
+                metric_type=MetricType.COUNTER,
+            ),
+            Metric(
+                name=f"{self.config['metrics_prefix']}_free_space_on_disk",
+                value=server_state.get("free_space_on_disk", 0),
+                labels={},  # no labels in the example
+                help_text="free_space_on_disk.",
+                metric_type=MetricType.COUNTER,
+            ),
+            Metric(
+                name=f"{self.config['metrics_prefix']}_queued_io_jobs",
+                value=server_state.get("queued_io_jobs", 0),
+                labels={},  # no labels in the example
+                help_text="queued_io_jobs.",
                 metric_type=MetricType.COUNTER,
             ),
         ]

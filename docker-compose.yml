@@ -1,0 +1,39 @@
+name: prom-qb-alltime
+services:
+  esanchezm:
+    cpu_shares: 90
+    command: []
+    deploy:
+      resources:
+        limits:
+          memory: 7943M
+    environment:
+      - QBITTORRENT_HOST=192.168.1.58
+      - QBITTORRENT_PASS=Cp3mMdP!#
+      - QBITTORRENT_PORT=8188
+      - QBITTORRENT_USER=noham
+    image: prom-qb-alltime
+    labels:
+      icon: https://raw.githubusercontent.com/esanchezm/prometheus-qbittorrent-exporter/master/logo.png
+    ports:
+      - target: 8000
+        published: "9101"
+        protocol: tcp
+    restart: unless-stopped
+    volumes: []
+    devices: []
+    cap_add: []
+    network_mode: bridge
+    privileged: false
+    container_name: ""
+x-casaos:
+  author: self
+  category: self
+  hostname: ""
+  icon: https://raw.githubusercontent.com/esanchezm/prometheus-qbittorrent-exporter/master/logo.png
+  index: /metrics
+  port_map: "9101"
+  scheme: http
+  store_app_id: relaxed_albert
+  title:
+    custom: prom-qb-alltime
